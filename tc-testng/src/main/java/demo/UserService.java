@@ -22,6 +22,7 @@ public class UserService {
             pstmt.setString(2, user.getName());
             pstmt.setString(3, user.getEmail());
             pstmt.execute();
+            pstmt.close();
         }
     }
 
@@ -37,6 +38,7 @@ public class UserService {
                 String email = rs.getString("email");
                 users.add(new User(id, name, email));
             }
+            pstmt.close();
         }
 
         return users;

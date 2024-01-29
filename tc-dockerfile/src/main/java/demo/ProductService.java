@@ -18,9 +18,9 @@ public class ProductService {
 
     public List<Product> getAll() throws SQLException {
         List<Product> products = new ArrayList<>();
-
+        PreparedStatement pstmt = null;
         try (Connection conn = dbProvider.getConnection()) {
-            PreparedStatement pstmt = conn.prepareStatement("select id,name,description,price from products");
+            pstmt = conn.prepareStatement("select id,name,description,price from products");
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 long id = rs.getLong("id");
@@ -29,8 +29,8 @@ public class ProductService {
                 BigDecimal price = rs.getBigDecimal("price");
                 products.add(new Product(id, name, description, price));
             }
+            pstmt.closeOnCompletion();
         }
-
-        return products;
+        return pstmt != null && pstmt.isCloseOnCompletion() ? products : products;
     }
 }

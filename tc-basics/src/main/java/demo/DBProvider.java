@@ -35,6 +35,7 @@ public class DBProvider {
 					    )
 					""");
             pstmt.execute();
+            pstmt.close();
         }
     }
 

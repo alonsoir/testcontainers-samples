@@ -15,6 +15,17 @@ public class GithubController {
 
     @GetMapping("/users/{username}")
     public GitHubUser getGithubUserProfile(@PathVariable String username) {
+        // Validación del formato del nombre de usuario
+        if (!isValidUsername(username)) {
+            throw new IllegalArgumentException("Nombre de usuario no válido");
+        }
         return githubService.getGithubUserProfile(username);
+    }
+
+    private boolean isValidUsername(String username) {
+        // Implementa tu lógica de validación aquí, por ejemplo, verificar el formato del nombre de usuario
+        // Devuelve true si el nombre de usuario es válido, false en caso contrario
+        // Aquí es donde podrías aplicar las medidas de seguridad adicionales mencionadas anteriormente
+        return true;
     }
 }

@@ -39,6 +39,7 @@
         <module>spring-boot-kotlin-demo</module>
         <module>quarkus-jpa-demo</module>
         <module>micronaut-jpa-demo</module>
+        <module>testcontainers-cloud-java-example</module>
     </modules>
     <build>
         <plugins>
